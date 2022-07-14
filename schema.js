@@ -33,6 +33,7 @@ const schema = buildSchema(`
 
     type Mutation {
         createUser(input: UserInput): User
+        removeUser(id: ID): User
     }
 
 `);

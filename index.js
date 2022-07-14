@@ -4,7 +4,11 @@ const cors = require("cors");
 
 const schema = require("./schema");
 
-const users = [{ id: 1, username: "John", age: 20 }];
+const users = [
+  { id: 1, username: "John", age: 20 },
+  { id: 2, username: "Ivan", age: 30 },
+  { id: 3, username: "Nik", age: 25 },
+];
 
 const app = express();
 app.use(cors());
@@ -26,6 +30,14 @@ const root = {
     const user = createUser(input);
     users.push(user);
     return user;
+  },
+  removeUser: ({ id }) => {
+    const userIndex = users.findIndex((item) => item.id === Number(id));
+    if (userIndex >= 0) {
+      const user = users[userIndex];
+      users.splice(userIndex, 1);
+      return user;
+    }
   },
 };
 
